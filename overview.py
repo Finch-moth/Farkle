@@ -39,7 +39,7 @@ def search_points(d1, d2, d3, d4, d5, d6):
             pot += 50
             print(f"Points:{pot}")
         else:
-                print("Farkle! No points this round")
+                print("\n\n\nFARKLE!\n No points this round\n\n")
                 pot = 0
                 pass_turn()
     
@@ -84,14 +84,31 @@ def play_game():
                 roll()
             elif choice == "k" or choice == "K":
                 keep_points(pot, p_turn)#calls the keep function
-                pass_turn()
+    final_round()
+
 
     #during this funciton, we want the entirety of the game to be played. We also want to be able to play the game again once the game is over
     
     #end of game--print the winner
     print(get_winner(score_1, score_2))
 
-
+def final_round():
+    print("\n\n\n\t\t\tFINAL ROUND!!!!\n\n\n")
+    global die_1, die_2, die_3, die_4, die_5, die_6, score_1, score_2, pot, p_turn, prev_p_turn
+    prev_p_turn = p_turn
+    print(f"Player one's score: {score_1}. \t Player two's score: {score_2}.")
+    print(f"\n\n\t\t\t\t\tIt\'s PLAYER {p_turn}\'S TURN.")
+    roll() # rolls and searches for points?
+    while prev_p_turn == p_turn:
+        choice = prompt_player()#call the prompt player function
+        if choice == "r" or choice == "R":
+            roll()
+        elif choice == "k" or choice == "K":
+            print(f"\n\t Player {p_turn}: You're keeping the points! Your turn is OVER!\n")
+            if p_turn == 1:
+                score_1 += pot
+            else:
+                score_2 += pot
 
 # idk
     #during this function, we want everything in a players turn to occur
@@ -101,6 +118,7 @@ def play_game():
 # this is how we will roll the dice, no matter how many dice there are
 def roll():
     global die_1, die_2, die_3, die_4, die_5, die_6
+    input("Press ENTER to roll")
     die_1 = random.randint(1,6)
     die_2 = random.randint(1,6)
     die_3 = random.randint(1,6)
@@ -134,6 +152,7 @@ def keep_points(points, turn):
     # print the scores
     # Meld
     # see if there is a winner
+    pass_turn()
     opt = prompt_opponent()
     if opt == "p" or opt == "P":
         pass
@@ -156,17 +175,17 @@ def prompt_opponent():
     return input(f"Player {p_turn}: Do you want to piggyback or roll all 6 dice? p/r: ")
 
 def game_has_winner(p1, p2):
-    if p1 >= 10000 or p2 >= 10000:
+    if p1 >= 1000 or p2 >= 1000: #CHANGE BACK to 10,000
         return True
     else:
         return False
     # this function will determine if a player has reached/gone over 10,000 points
 
 def get_winner(p1, p2):
-    if p1 >= 10000:
-        return f"\n\n\nThe winner is Player 1 with {p1} points!\n\n\n"
+    if p1 >= 1000: #CHANGE BACK to 10,000
+        return f"\n\n\nThe winner is: Player 1 with {p1} points!\n\n\n"
     else:
-        return f"\n\n\nThe winner is Player 2 with {p2} points!\n\n\n"
+        return f"\n\n\nThe winner is: Player 2 with {p2} points!\n\n\n"
 
 
 
