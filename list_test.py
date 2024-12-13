@@ -8,6 +8,17 @@ def roll(dice_pool, holding):
             dice_pool[i] = random.randint(1,6)
     return dice_pool
 
+def hold_item(my_list):
+    placements = map(int, input("Which die/dice would you like to hold? If multiple, leave a space between ").split(' '))
+    #check to make sure the placement is in the list
+    for placement in placements:
+        if placement >= 1 and placement <= len(my_list):
+            my_list[placement-1]= True
+
+def reset_hold():
+    my_list = [False, False, False, False, False, False]
+    return my_list
+
 def delete_item(my_list):
     placement = int(input("What is the placement of the item to delete: "))
     #check to make sure the placement is in the list
@@ -32,16 +43,7 @@ def print_menu():
     print("7) Reset (the hold)")
     print("-------------------")
 
-def hold_item(my_list):
-    placements = map(int, input("Which die/dice would you like to hold? If multiple, leave a space between ").split(' '))
-    #check to make sure the placement is in the list
-    for placement in placements:
-        if placement >= 1 and placement <= len(my_list):
-            my_list[placement-1]= True
 
-def reset_hold():
-    my_list = [False, False, False, False, False, False]
-    return my_list
 
 
 pool = [False, False, False, False, False, False]

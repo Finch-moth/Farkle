@@ -2,10 +2,7 @@
 import re
 
 class Farkle():
-    def __init__(self): #, n_players, player_names):
-        #self.n_players = n_players
-        #self.player_names = player_names
-        #self.scores = [0] * n_players
+    def __init__(self):
         self.dice_rules = [
             # regular expressions
             (r"(\d)\1{5}", 3000), # 6 of a kind
